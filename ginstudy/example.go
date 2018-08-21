@@ -28,8 +28,6 @@ func main() {
 
 	r := gin.Default()
 
-
-
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
@@ -115,14 +113,21 @@ func main() {
 		c.DataFromReader(http.StatusOK, contentLength, contentType, reader, extraHeaders)
 	})
 
-
 	r.LoadHTMLGlob("templates/*")
-	r.GET("/index", func(c *gin.Context){
-		c.HTML(http.StatusOK, "index.tmpl", gin.H{
+	// 测试模板渲染
+	r.GET("/index", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.tpl", gin.H{
 			"title": "This is my title",
 		})
 	})
 
+	// 测试element
+	r.GET("/element", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "element.html", gin.H{
+			"dialog_content": "This is the dialog content.",
+			"title":          "Dialog Title",
+		})
+	})
 
 	r.Run()
 }
