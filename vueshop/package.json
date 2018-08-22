@@ -1,0 +1,18 @@
+{
+  "name": "vueshop",
+  "version": "1.0.0",
+  "description": "vue开发购物车功能示例",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue"
+  ],
+  "author": "Molock",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^2.5.17",
+    "vue-resource": "^1.5.1"
+  }
+}
