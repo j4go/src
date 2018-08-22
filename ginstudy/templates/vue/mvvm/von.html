@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--
+v-on指令用于给监听DOM事件，它的用语法和v-bind是类似的，例如监听<a>元素的点击事件：
+<a v-on:click="doSomething">
+有两种形式调用方法：绑定一个方法（让事件指向方法的引用），或者使用内联语句。
+Greet按钮将它的单击事件直接绑定到greet()方法，而Hi按钮则是调用say()方法。
+
+v-bind和v-on的缩写
+Vue.js为最常用的两个指令v-bind和v-on提供了缩写方式。v-bind指令可以缩写为一个冒号，v-on指令可以缩写为@符号。
+
+完整语法
+<a href="javascripit:void(0)" v-bind:class="activeNumber === n + 1 ? 'active' : ''">{{ n+1 }}</a>
+缩写语法
+<a href="javascripit:void(0)" :class="activeNumber=== n + 1 ? 'active' : ''">{{ n+1 }}</a>
+
+完整语法
+<button v-on:click="greet">Greet</button>
+缩写语法
+<button @click="greet">Greet</button>
+
+-->
+<div id="app">
+    <p><input type="text" v-model="message"></p>
+    <p>
+        <!--click事件直接绑定一个方法-->
+        <button v-on:click="greet">Greet</button>
+    </p>
+    <p>
+        <!--click事件使用内联语句-->
+        <button v-on:click="say('Hi')">Hi</button>
+    </p>
+</div>
+</body>
+<script src="vuedev.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello, Vue.js!'
+        },
+        // 在 `methods` 对象中定义方法
+        methods: {
+            greet: function() {
+                // // 方法内 `this` 指向 vm
+                alert(this.message)
+            },
+            say: function(msg) {
+                alert(msg)
+            }
+        }
+    })
+</script>
+</html>
