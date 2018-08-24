@@ -16,14 +16,34 @@ export default new Router({
         path: '/layout',
         component: Layout
     },
-      {
-          path: '/container',
-          component: () => import('./views/Container.vue')
-      },
-      {
-          path: '/input',
-          component: () => import('./views/Input.vue')
-      },
+    {
+        path: '/container',
+        component: () => import('./views/Container.vue')
+    },
+    {
+        path: '/input',
+        component: () => import('./views/Input.vue')
+    },
+    {
+      path: '/select',
+      component: () => import('./views/Select.vue')
+    },
+    {
+      path: '/datepicker',
+      component: () => import('./views/DatePicker.vue')
+    },
+    {
+      path: '/form',
+      component: () => import('./views/Form.vue')
+    },
+    {
+      path: '/table',
+      component: () => import('./views/Table.vue')
+    },
+    {
+      path: '/dialog',
+      component: () => import('./views/Dialog.vue')
+    },
     {
       path: '/about',
       name: 'about',
