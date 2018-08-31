@@ -113,7 +113,9 @@ func main() {
 		c.DataFromReader(http.StatusOK, contentLength, contentType, reader, extraHeaders)
 	})
 
-	r.LoadHTMLGlob("templates/*")
+	// r.LoadHTMLGlob("templates/*")
+	// r.LoadHTMLFiles("templates/template1.html", "templates/template2.html")
+	r.LoadHTMLFiles("templates/index.tpl")
 	// 测试模板渲染
 	r.GET("/index", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tpl", gin.H{
@@ -122,11 +124,29 @@ func main() {
 	})
 
 	// 测试element
-	r.GET("/element", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "element.html", gin.H{
-			"dialog_content": "This is the dialog content.",
-			"title":          "Dialog Title",
-		})
+	// r.GET("/element", func(c *gin.Context) {
+	// 	c.HTML(http.StatusOK, "element.html", gin.H{
+	// 		"dialog_content": "This is the dialog content.",
+	// 		"title":          "Dialog Title",
+	// 	})
+	// })
+
+	// /login 测试登录
+	r.POST("/login", func(c *gin.Context) {
+		var msg struct {
+			Name string `json:"username"`
+			Pwd  string `json:"password"`
+		}
+		// log.Print(msg)
+		if err := c.ShouldBindJSON(&msg); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error(), "status": "fail"})
+			return
+		} else if msg.Name == "admin" && msg.Pwd == "admin" {
+			c.JSON(http.StatusOK, gin.H{"status": "success"})
+		} else {
+			c.JSON(http.StatusOK, gin.H{"status": "fail"})
+		}
+
 	})
 
 	r.Run()
